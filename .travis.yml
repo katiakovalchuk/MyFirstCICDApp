@@ -13,6 +13,6 @@ branches:
 
 deploy:
   provider: heroku
-  app: MyFirstCICDApp
+  app: social-network-app1
   api_key:
     secure: "a037a117-5414-47e7-ab0d-c10b6eba81aa"
