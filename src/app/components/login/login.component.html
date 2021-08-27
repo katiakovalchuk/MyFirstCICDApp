@@ -16,20 +16,20 @@
     >
       <h2 class="text-center mb-3">Sign In</h2>
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="email">Username</label>
         <input
           type="text"
           class="form-control"
-          id="username"
-          name="username"
-          [(ngModel)]="form.username"
+          id="email"
+          name="email"
+          [(ngModel)]="form.email"
           required
-          #username="ngModel"
+          #email="ngModel"
         />
         <div
           class="alert alert-danger"
           role="alert"
-          *ngIf="username.errors && f.submitted"
+          *ngIf="email.errors && f.submitted"
         >
           Username is required!
         </div>
@@ -74,7 +74,7 @@
     </form>
 
     <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ roles }}.
+      Logged in successfully!
     </div>
   </div>
 </div>

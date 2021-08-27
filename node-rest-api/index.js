@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const morgan = require('morgan');
 
 const path = require('path');
-const cors = require('cors');
 const bodyParser = require('body-parser');
 // const mongoDb = require('./database/db')
 // const createError = require('http-errors');
@@ -14,13 +14,21 @@ const {authMiddleware} = require('./middlewares/authMiddleware');
 
 app.use(express.json());
 app.use(morgan('tiny'));
-
 app.use(cors());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }))
+
+// app.use(function(req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+//   res.setHeader("Access-Control-Allow-Headers", "*");
+//   next();
+// })
 
 app.use('/api/auth', authRouter);
 app.use(authMiddleware);
