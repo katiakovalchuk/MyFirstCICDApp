@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'games', component: GamesComponent },
   { path: 'library', component: LibraryComponent },
-  { path: 'friends', component: FriendsComponent }
+  { path: 'friends', component: FriendsComponent },
+  { path: '**', component: LoginComponent }
 ];
 
 @NgModule({
