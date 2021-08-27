@@ -8,13 +8,13 @@ import {LibraryComponent} from "./components/library/library.component";
 import {FriendsComponent} from "./components/friends/friends.component";
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
   { path: '', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'games', component: GamesComponent },
   { path: 'library', component: LibraryComponent },
   { path: 'friends', component: FriendsComponent },
-  { path: '**', component: LoginComponent }
+  // { path: '**', component: LoginComponent }
 ];
 
 @NgModule({
