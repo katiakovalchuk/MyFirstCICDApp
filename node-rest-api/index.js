@@ -14,8 +14,12 @@ const {authMiddleware} = require('./middlewares/authMiddleware');
 
 app.use(express.json());
 app.use(morgan('tiny'));
-app.use(cors());
 
+const corsOptions = {
+  origin: 'http://localhost:8000',
+  credentials: true
+}
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -42,9 +46,9 @@ app.get('/api/user/profile', (req, res) => {
   }
 })
 
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public/index.html'));
-// });
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 // app.use((req, res, next) => {
 //   next(createError(404));
