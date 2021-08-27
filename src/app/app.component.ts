@@ -32,5 +32,7 @@ export class AppComponent {
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
+    alert('You have been logged out successfully!');
+    // this.isLoggedIn = false;
   }
 }
