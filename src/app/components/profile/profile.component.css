@@ -1,0 +1,8 @@
+form{
+  max-width: 500px;
+  min-width: 250px;
+  height: 300px;
+}
+.min-vh-80{
+  min-height: 80vh;
+}

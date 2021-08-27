@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const User = mongoose.model('User', {
-  username: {
+  userName: {
     type: String,
     min: 3,
     max: 20,

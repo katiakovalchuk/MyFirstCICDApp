@@ -1,1 +1,79 @@
-<p>profile works!</p>
+
+<div class="d-flex align-items-center justify-content-center min-vh-80">
+  <div class="col-10 m-auto">
+    <form
+      *ngIf="isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+      class="d-flex flex-column justify-content-around m-auto"
+    >
+      <h2 class="text-center mb-3">Profile</h2>
+      <div class="form-group">
+        <label for="userName">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="userName"
+          name="userName"
+          [(ngModel)]="form.userName"
+          required
+          minlength="3"
+          maxlength="20"
+        />
+        <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="f.submitted&&!f.valid"
+          >
+            Username should be between 3 and 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          name="email"
+          title="Not possible to modify email"
+          [(ngModel)]="form.email"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input
+          type="number"
+          class="form-control"
+          id="age"
+          name="age"
+          placeholder="Age"
+          [(ngModel)]="form.age"
+          required
+          min="1"
+          max="100"
+        />
+      </div>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted&&!f.valid"
+        >
+          Age should be between 1 and 100
+        </div>
+      </div>
+        <p class="text-danger">You may edit Username and Age only</p>
+      <div class="form-group m-auto">
+        <button class="btn btn-primary btn-block m-auto">
+          Save
+        </button>
+      </div>
+    </form>
+    <div  class="alert alert-danger" *ngIf="!isLoggedIn">Please, log in first!</div>
+  </div>
+</div>

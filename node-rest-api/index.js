@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 const morgan = require('morgan');
 
+const jwt = require('jsonwebtoken');
 const path = require('path');
 const bodyParser = require('body-parser');
 // const mongoDb = require('./database/db')
@@ -11,6 +12,7 @@ const bodyParser = require('body-parser');
 
 const {authRouter}  = require('./controllers/authController');
 const {authMiddleware} = require('./middlewares/authMiddleware');
+const {User} = require('./models/userModel');
 
 app.use(express.json());
 app.use(morgan('tiny'));
@@ -37,12 +39,26 @@ app.use(bodyParser.urlencoded({
 app.use('/api/auth', authRouter);
 app.use(authMiddleware);
 
-app.get('/api/user/profile', (req, res) => {
-  const user = req.user;
-  if (user){
-    res.status(200).json(user)
-  } else {
-    res.status(500).json({message: 'Server error'})
+app.get('/api/user/profile', async (req, res) => {
+  try {
+    req.user ?
+      res.status(200).json(req.user) :
+      res.status(404).json({message: 'User not found'});
+  } catch (err){
+    res.status(500).json({message: err.message});
+  }
+})
+
+app.put('/api/updateUserProfile',  async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const { _id } = jwt.decode(token);
+    const { userName, age } = req.query;
+    await User.updateOne({_id}, {$set: {userName, age}});
+    // res.setHeader("Access-Control-Allow-Methods", 'GET,HEAD,OPTIONS,POST,PUT,PATCH');
+    res.status(200).json(token);
+  }catch (err){
+    res.status(500).json({message: err.message});
   }
 })
 
@@ -74,7 +90,7 @@ const start = async () => {
     });
 
     app.listen(8080, () => {
-      console.log('Listening on port 8000');
+      console.log('Listening on port 8080');
     });
   }catch (err){
     console.error(`Error on server startup: ${err.message}`);

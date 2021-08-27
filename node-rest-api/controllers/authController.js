@@ -11,7 +11,7 @@ router.post('/signin', async (req, res) => {
     // res.setHeader("Access-Control-Max-Age", "1800");
     // res.setHeader("Access-Control-Allow-Headers", "content-type");
     // res.setHeader("Access-Control-Allow-Methods","PUT, POST, GET, DELETE, PATCH, OPTIONS");
-    res.json({token, message: 'Logged in successfully!'})
+    res.json({token, email, message: 'Logged in successfully!'})
   }catch (err){
     if (err){
       res.status(500).json({message: err.message});
