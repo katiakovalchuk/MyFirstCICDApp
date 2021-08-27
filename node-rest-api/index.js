@@ -42,15 +42,6 @@ app.get('/api/user/profile', (req, res) => {
   }
 })
 
-app.get('/login', (req, res) => {
-  const user = req.user;
-  if (user){
-    res.status(200).json(user)
-  } else {
-    res.status(500).json({message: 'Server error'})
-  }
-})
-
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
