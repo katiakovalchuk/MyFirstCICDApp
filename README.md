@@ -1,6 +1,10 @@
 # MyFirstCICDApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2. It is possible to login with test account 
+{
+    "email": "example@email.com",
+    "password": "123456"
+}
 
 ## Development server
 
