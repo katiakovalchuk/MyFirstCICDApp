@@ -26,7 +26,6 @@ export class ProfileService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT,PATCH',
         'Authorization': `Bearer ${token}`
       })
     };

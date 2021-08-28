@@ -37,28 +37,7 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(): void{
     const { userName, age } = this.form;
-    console.log({ ...this.form });
-    console.log(userName);
-    console.log(age);
     this.profileService.updateProfile({ ...this.form }).subscribe();
+    alert('Profile data has been updated successfully!');
   }
-
-  // onSubmit(): void {
-  //   const { email, password } = this.form;
-  //
-  //   this.authService.login({email, password}).subscribe(
-  //     data => {
-  //       this.token.saveToken(data.token);
-  //       this.token.saveUser(data);
-  //
-  //       // this.isLoginFailed = false;
-  //       // this.isLoggedIn = true;
-  //       // this.reloadPage();
-  //     },
-  //     // err => {
-  //     //   this.errorMessage = err.error.message;
-  //     //   this.isLoginFailed = true;
-  //     // }
-  //   );
-  // }
 }
