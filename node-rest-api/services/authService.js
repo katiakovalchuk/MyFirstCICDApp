@@ -10,7 +10,7 @@ const signIn = async ({email, password}) => {
   if (!user){
     throw new Error('No user found');
   }
-
+  //use after passwords will be encrypted in db
   // if (!(await bcrypt.compare(password, user.password))){
   //   throw new Error('Invalid password');
   // }
