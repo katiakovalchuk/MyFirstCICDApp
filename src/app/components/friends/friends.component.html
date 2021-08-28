@@ -17,6 +17,7 @@
         <li>{{friend.userName}}<button (click)="removeFriend()" class="btn position-absolute">Remove Friend</button></li>
       </ul>
     </div>
+    <div  class="alert alert-danger" *ngIf="!isLoggedIn">Please, log in first!</div>
   </div>
 </div>
 

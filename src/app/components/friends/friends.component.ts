@@ -16,10 +16,22 @@ export class FriendsComponent implements OnInit {
   searchedFriendsArray: any = [];
   searchText: string = '';
   isSearchMade: boolean = false;
+  isLoggedIn: boolean = false;
 
   constructor(private http: HttpClient, private token: TokenStorageService) { }
 
   ngOnInit(): void {
+    // this.currentUser = this.token.getUser();
+    // if (this.token.getToken()) {
+    //   this.isLoggedIn = true;
+    //   this.form = {
+    //     ...this.form,
+    //     email: this.currentUser.email
+    //   }
+    // }
+    if (this.token.getUser()){
+      this.isLoggedIn = true;
+    }
     const token = this.token.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
