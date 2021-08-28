@@ -1,1 +1,37 @@
-<p>games works!</p>
+<div class="d-flex flex-column justify-content-around">
+  <div>
+    <h2 class="mt-5">{{title}}</h2>
+    <input type="search" [(ngModel)]="searchText" placeholder="Search text">
+    <button (click)="addSearchResults()">Search</button>
+  </div>
+  <div *ngIf="isSearchMade">
+    <h2 class="mt-5">Requested Games</h2>
+    <div class="row">
+      <div class="col-4 mb-4" *ngFor="let game of games">
+        <div class="card">
+          <div class="card-body p-0 font-14">
+            <div class="text-white bg-violet p-2 height-100"><h5 class="card-title">{{game.title}}</h5>
+              <p class="text-right mt-4"><span>{{game.price}} UAH</span></p></div>
+            <p class="card-text p-2">{{game.description}}</p>
+          </div>
+          <button (click)="addToLibrary()" type="button" class="btn btn-primary bg-dark-violet">Add to Library</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2 class="mt-5">Featured Games</h2>
+    <div class="row">
+      <div class="col-4 mb-4" *ngFor="let game of games">
+        <div class="card">
+          <div class="card-body p-0 font-14">
+            <div class="text-white bg-violet p-2 height-100"><h5 class="card-title">{{game.title}}</h5>
+              <p class="text-right mt-4"><span>{{game.price}} UAH</span></p></div>
+            <p class="card-text p-2">{{game.description}}</p>
+          </div>
+          <button (click)="addToLibrary()" type="button" class="btn btn-primary bg-dark-violet">Add to Library</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

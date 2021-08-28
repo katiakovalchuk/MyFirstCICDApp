@@ -12,6 +12,7 @@ import { GamesComponent } from './components/games/games.component';
 import { LibraryComponent } from './components/library/library.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { FilterGamesPipe } from './pipes/filter-games.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     LibraryComponent,
     FriendsComponent,
     FilterPipe,
+    FilterGamesPipe,
   ],
   imports: [
     BrowserModule,

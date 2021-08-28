@@ -3,6 +3,10 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {TokenStorageService} from "../../services/token-storage.service";
 
 const BASE_URL = 'http://localhost:8080/api/';
+type Friend = {
+  userName: string,
+  email?: string
+}
 
 @Component({
   selector: 'app-friends',
@@ -17,18 +21,11 @@ export class FriendsComponent implements OnInit {
   searchText: string = '';
   isSearchMade: boolean = false;
   isLoggedIn: boolean = false;
+  friend: Friend;
 
   constructor(private http: HttpClient, private token: TokenStorageService) { }
 
   ngOnInit(): void {
-    // this.currentUser = this.token.getUser();
-    // if (this.token.getToken()) {
-    //   this.isLoggedIn = true;
-    //   this.form = {
-    //     ...this.form,
-    //     email: this.currentUser.email
-    //   }
-    // }
     if (this.token.getUser()){
       this.isLoggedIn = true;
     }
@@ -54,7 +51,7 @@ export class FriendsComponent implements OnInit {
   addFriend(){
     alert('Friend has been added!');
   }
-  removeFriend(){
+  removeFriend(): void{
     alert('Friend has been removed!');
   }
 }

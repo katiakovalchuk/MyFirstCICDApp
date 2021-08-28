@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const {authRouter}  = require('./controllers/authController');
 const {authMiddleware} = require('./middlewares/authMiddleware');
 const {User} = require('./models/userModel');
+const {Game} = require('./models/gameModel');
 
 app.use(express.json());
 app.use(morgan('tiny'));
@@ -37,6 +38,27 @@ app.use(bodyParser.urlencoded({
 // })
 
 app.use('/api/auth', authRouter);
+// app.get('/api/addGame', async (req, res) => {
+//   try {
+//     const game = new Game({title: 'Doom Ethernal 6', price: '53', description: 'Two players play the game. Each player controls the\n' +
+//             'vertical motion of a paddle (represented by a rectangle) on the screen using\n' +
+//             'two keys on the keyboard. A ball starts in the center of the screen and initially\n' +
+//             'moves in a random direction.'});
+//     await game.save();
+//
+//     res.end('success')
+//   }catch (e){
+//     res.json({error: e.message})
+//   }
+// })
+app.get('/api/games', async (req, res) => {
+  try {
+    const games = await Game.find({});
+    res.status(200).json(games);
+  } catch (err){
+    res.status(500).json({message: err.message});
+  }
+})
 app.use(authMiddleware);
 
 app.get('/api/user/profile', async (req, res) => {
@@ -81,6 +103,7 @@ app.get('/api/user/searchFriends', async (req, res) => {
     res.status(500).json({message: err.message});
   }
 });
+
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
