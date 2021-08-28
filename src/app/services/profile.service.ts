@@ -20,9 +20,7 @@ export class ProfileService {
   updateProfile(user: User): Observable<any> {
     const { userName, age } = user;
     const params = new HttpParams().set('userName', user.userName).set('age', user.age);
-    console.log(`${BASE_URL}updateUserProfile?${params}`);
     const token = this.token.getToken();
-    console.log(token);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

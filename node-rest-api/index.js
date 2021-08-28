@@ -56,11 +56,31 @@ app.put('/api/updateUserProfile',  async (req, res) => {
     const { userName, age } = req.query;
     await User.updateOne({_id}, {$set: {userName, age}});
     // res.setHeader("Access-Control-Allow-Methods", 'GET,HEAD,OPTIONS,POST,PUT,PATCH');
-    res.status(200).json(token);
+    res.status(200).json({message: 'User data has been updated successfully!'});
   }catch (err){
     res.status(500).json({message: err.message});
   }
 })
+
+app.get('/api/user/getFriends', async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const { _id } = jwt.decode(token);
+    const { friends } = await User.findOne({_id});
+    res.status(200).json(friends);
+  }catch (err){
+    res.status(500).json({message: err.message});
+  }
+});
+
+app.get('/api/user/searchFriends', async (req, res) => {
+  try {
+    const searchedFriends = await User.find({}).select('userName');
+    res.status(200).json(searchedFriends);
+  }catch (err){
+    res.status(500).json({message: err.message});
+  }
+});
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));

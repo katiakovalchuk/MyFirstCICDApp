@@ -9,7 +9,7 @@ import {FriendsComponent} from "./components/friends/friends.component";
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  // { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'games', component: GamesComponent },
   { path: 'library', component: LibraryComponent },
