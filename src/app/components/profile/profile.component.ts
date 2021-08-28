@@ -2,11 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { ProfileService } from '../../services/profile.service';
 
-enum KEYS{
-  TOKEN_KEY = 'auth-token',
-  USER_KEY = 'auth-user',
-}
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -36,7 +31,6 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit(): void{
-    const { userName, age } = this.form;
     this.profileService.updateProfile({ ...this.form }).subscribe();
     alert('Profile data has been updated successfully!');
   }
