@@ -7,7 +7,7 @@
   <div *ngIf="isSearchMade">
     <h2 class="mt-5">Requested Games</h2>
     <div class="row">
-      <div class="col-4 mb-4" *ngFor="let game of games">
+      <div class="col-4 mb-4" *ngFor="let game of games | filterGames: searchText;">
         <div class="card">
           <div class="card-body p-0 font-14">
             <div class="text-white bg-violet p-2 height-100"><h5 class="card-title">{{game.title}}</h5>
